@@ -24,27 +24,20 @@ function cinq_theme_options_init() {
 		'cinq_theme_options_validate' // The sanitization callback, see cinq_theme_options_validate()
 	);
 
-	// Register our settings field group
-	add_settings_section(
-		'general', // Unique identifier for the settings section
-		'', // Section title (we don't want one)
-		'__return_false', // Section callback (we don't want anything)
-		'theme_options' // Menu slug, used to uniquely identify the page; see cinq_theme_options_add_page()
-	);
+	// Register our settings field groups
+	add_settings_section('general',	'', '__return_false', 'theme_options');
+	add_settings_section('general',	'', '__return_false', 'theme_options_social_icons');
 
-	// Register our individual settings fields
-	add_settings_field(
-		'sample_checkbox', // Unique identifier for the field for this section
-		__( 'Sample Checkbox', 'cinq' ), // Setting field label
-		'cinq_settings_field_sample_checkbox', // Function that renders the settings field
-		'theme_options', // Menu slug, used to uniquely identify the page; see cinq_theme_options_add_page()
-		'general' // Settings section. Same as the first argument in the add_settings_section() above
-	);
+	// Test field
+	add_settings_field("test", __("Test", "cinq"), "cinq_settings_field_text", "theme_options", "general", array("test"));
 
-	add_settings_field( 'sample_text_input', __( 'Sample Text Input', 'cinq' ), 'cinq_settings_field_sample_text_input', 'theme_options', 'general' );
-	add_settings_field( 'sample_select_options', __( 'Sample Select Options', 'cinq' ), 'cinq_settings_field_sample_select_options', 'theme_options', 'general' );
-	add_settings_field( 'sample_radio_buttons', __( 'Sample Radio Buttons', 'cinq' ), 'cinq_settings_field_sample_radio_buttons', 'theme_options', 'general' );
-	add_settings_field( 'sample_textarea', __( 'Sample Textarea', 'cinq' ), 'cinq_settings_field_sample_textarea', 'theme_options', 'general' );
+	// Social Fields
+	add_settings_field("show_rss", __("Show RSS", "cinq"), "cinq_settings_field_checkbox", "theme_options_social_icons", "general", array("show_rss", "Show RSS"));
+	add_settings_field("show_email", __("Show Email", "cinq"), "cinq_settings_field_checkbox", "theme_options_social_icons", "general", array("show_email", "Show Email"));
+	add_settings_field("show_twitter", __("Show Twitter", "cinq"), "cinq_settings_field_checkbox", "theme_options_social_icons", "general", array("show_twitter", "Show Twitter"));
+	add_settings_field("twitter_handle", __("Twitter Handle", "cinq"), "cinq_settings_field_text", "theme_options_social_icons", "general", array("twitter_handle"));
+	add_settings_field("show_instagram", __("Show Instagram", "cinq"), "cinq_settings_field_checkbox", "theme_options_social_icons", "general", array("show_instagram", "Show Instagram"));
+	add_settings_field("instagram_username", __("Instagram Username", "cinq"), "cinq_settings_field_text", "theme_options_social_icons", "general", array("instagram_username"));
 }
 add_action( 'admin_init', 'cinq_theme_options_init' );
 
@@ -81,166 +74,50 @@ function cinq_theme_options_add_page() {
 add_action( 'admin_menu', 'cinq_theme_options_add_page' );
 
 /**
- * Returns an array of sample select options registered for Cinq.
- *
- * @since Cinq 1.0
- */
-function cinq_sample_select_options() {
-	$sample_select_options = array(
-		'0' => array(
-			'value' =>	'0',
-			'label' => __( 'Zero', 'cinq' )
-		),
-		'1' => array(
-			'value' =>	'1',
-			'label' => __( 'One', 'cinq' )
-		),
-		'2' => array(
-			'value' => '2',
-			'label' => __( 'Two', 'cinq' )
-		),
-		'3' => array(
-			'value' => '3',
-			'label' => __( 'Three', 'cinq' )
-		),
-		'4' => array(
-			'value' => '4',
-			'label' => __( 'Four', 'cinq' )
-		),
-		'5' => array(
-			'value' => '5',
-			'label' => __( 'Five', 'cinq' )
-		)
-	);
-
-	return apply_filters( 'cinq_sample_select_options', $sample_select_options );
-}
-
-/**
- * Returns an array of sample radio options registered for Cinq.
- *
- * @since Cinq 1.0
- */
-function cinq_sample_radio_buttons() {
-	$sample_radio_buttons = array(
-		'yes' => array(
-			'value' => 'yes',
-			'label' => __( 'Yes', 'cinq' )
-		),
-		'no' => array(
-			'value' => 'no',
-			'label' => __( 'No', 'cinq' )
-		),
-		'maybe' => array(
-			'value' => 'maybe',
-			'label' => __( 'Maybe', 'cinq' )
-		)
-	);
-
-	return apply_filters( 'cinq_sample_radio_buttons', $sample_radio_buttons );
-}
-
-/**
  * Returns the options array for Cinq.
  *
  * @since Cinq 1.0
  */
 function cinq_get_theme_options() {
 	$saved = (array) get_option( 'cinq_theme_options' );
-	$defaults = array(
-		'sample_checkbox'       => 'off',
-		'sample_text_input'     => '',
-		'sample_select_options' => '',
-		'sample_radio_buttons'  => '',
-		'sample_textarea'       => '',
+	/*$defaults = array(
+    'test' => '',
+		'show_rss' => 'on',
+		'show_email' => 'on',
+		'show_twitter' => 'off',
+		'twitter_handle'  => '',
+		'show_instagram' => 'off',
+		'instagram_username' => ''
 	);
 
 	$defaults = apply_filters( 'cinq_default_theme_options', $defaults );
 
 	$options = wp_parse_args( $saved, $defaults );
-	$options = array_intersect_key( $options, $defaults );
+	$options = array_intersect_key( $options, $defaults );*/
 
-	return $options;
+	return $saved;
 }
 
 /**
- * Renders the sample checkbox setting field.
+ * Renders a text input setting field.
  */
-function cinq_settings_field_sample_checkbox() {
+function cinq_settings_field_text($args) {
 	$options = cinq_get_theme_options();
 	?>
-	<label for="sample-checkbox">
-		<input type="checkbox" name="cinq_theme_options[sample_checkbox]" id="sample-checkbox" <?php checked( 'on', $options['sample_checkbox'] ); ?> />
-		<?php _e( 'A sample checkbox.', 'cinq' ); ?>
+	<input type="text" name="cinq_theme_options[<?= $args[0] ?>]" id="<?= $args[0] ?>" value="<?= esc_attr( $options[$args[0]] ); ?>" />
+	<?php
+}
+
+/**
+ * Renders a checkbox setting field.
+ */
+function cinq_settings_field_checkbox($args) {
+	$options = cinq_get_theme_options();
+	?>
+	<label for="<?= $args[0] ?>">
+		<input type="checkbox" name="cinq_theme_options[<?= $args[0] ?>]" id="<?= $args[0] ?>" <?php checked( 'on', $options[$args[0]] ); ?> />
+		<?php _e( $args[1], 'cinq' ); ?>
 	</label>
-	<?php
-}
-
-/**
- * Renders the sample text input setting field.
- */
-function cinq_settings_field_sample_text_input() {
-	$options = cinq_get_theme_options();
-	?>
-	<input type="text" name="cinq_theme_options[sample_text_input]" id="sample-text-input" value="<?php echo esc_attr( $options['sample_text_input'] ); ?>" />
-	<label class="description" for="sample-text-input"><?php _e( 'Sample text input', 'cinq' ); ?></label>
-	<?php
-}
-
-/**
- * Renders the sample select options setting field.
- */
-function cinq_settings_field_sample_select_options() {
-	$options = cinq_get_theme_options();
-	?>
-	<select name="cinq_theme_options[sample_select_options]" id="sample-select-options">
-		<?php
-			$selected = $options['sample_select_options'];
-			$p = '';
-			$r = '';
-
-			foreach ( cinq_sample_select_options() as $option ) {
-				$label = $option['label'];
-				if ( $selected == $option['value'] ) // Make default first in list
-					$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-				else
-					$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-			}
-			echo $p . $r;
-		?>
-	</select>
-	<label class="description" for="sample_theme_options[selectinput]"><?php _e( 'Sample select input', 'cinq' ); ?></label>
-	<?php
-}
-
-/**
- * Renders the radio options setting field.
- *
- * @since Cinq 1.0
- */
-function cinq_settings_field_sample_radio_buttons() {
-	$options = cinq_get_theme_options();
-
-	foreach ( cinq_sample_radio_buttons() as $button ) {
-	?>
-	<div class="layout">
-		<label class="description">
-			<input type="radio" name="cinq_theme_options[sample_radio_buttons]" value="<?php echo esc_attr( $button['value'] ); ?>" <?php checked( $options['sample_radio_buttons'], $button['value'] ); ?> />
-			<?php echo $button['label']; ?>
-		</label>
-	</div>
-	<?php
-	}
-}
-
-/**
- * Renders the sample textarea setting field.
- */
-function cinq_settings_field_sample_textarea() {
-	$options = cinq_get_theme_options();
-	?>
-	<textarea class="large-text" type="text" name="cinq_theme_options[sample_textarea]" id="sample-textarea" cols="50" rows="10" /><?php echo esc_textarea( $options['sample_textarea'] ); ?></textarea>
-	<label class="description" for="sample-textarea"><?php _e( 'Sample textarea', 'cinq' ); ?></label>
 	<?php
 }
 
@@ -258,11 +135,23 @@ function cinq_theme_options_render_page() {
 		<?php settings_errors(); ?>
 
 		<form method="post" action="options.php">
-			<?php
+		  <?php
 				settings_fields( 'cinq_options' );
-				do_settings_sections( 'theme_options' );
-				submit_button();
+		  ?>
+
+		  <h3>Test</h3>
+		  <?php
+  		  do_settings_sections("theme_options");
+  		?>
+
+  		<h3>Header Social Icons</h3>
+			<?php
+				do_settings_sections( 'theme_options_social_icons' );
 			?>
+
+			<?php
+  			submit_button();
+  		?>
 		</form>
 	</div>
 	<?php
@@ -280,27 +169,20 @@ function cinq_theme_options_render_page() {
  * @since Cinq 1.0
  */
 function cinq_theme_options_validate( $input ) {
-	$output = array();
+	/*$output = array();
+
+	if ( isset( $input['test'] ) && ! empty( $input['test'] ) )
+		$output['test'] = wp_filter_nohtml_kses( $input['test'] );
 
 	// Checkboxes will only be present if checked.
-	if ( isset( $input['sample_checkbox'] ) )
-		$output['sample_checkbox'] = 'on';
+	if ( isset( $input['show_rss'] ) )
+		$output['show_rss'] = 'on';
 
 	// The sample text input must be safe text with no HTML tags
-	if ( isset( $input['sample_text_input'] ) && ! empty( $input['sample_text_input'] ) )
-		$output['sample_text_input'] = wp_filter_nohtml_kses( $input['sample_text_input'] );
+	if ( isset( $input['twitter_handle'] ) && ! empty( $input['twitter_handle'] ) )
+		$output['twitter_handle'] = wp_filter_nohtml_kses( $input['twitter_handle'] );
 
-	// The sample select option must actually be in the array of select options
-	if ( isset( $input['sample_select_options'] ) && array_key_exists( $input['sample_select_options'], cinq_sample_select_options() ) )
-		$output['sample_select_options'] = $input['sample_select_options'];
+	return apply_filters( 'cinq_theme_options_validate', $output, $input );*/
 
-	// The sample radio button value must be in our array of radio button values
-	if ( isset( $input['sample_radio_buttons'] ) && array_key_exists( $input['sample_radio_buttons'], cinq_sample_radio_buttons() ) )
-		$output['sample_radio_buttons'] = $input['sample_radio_buttons'];
-
-	// The sample textarea must be safe text with the allowed tags for posts
-	if ( isset( $input['sample_textarea'] ) && ! empty( $input['sample_textarea'] ) )
-		$output['sample_textarea'] = wp_filter_post_kses( $input['sample_textarea'] );
-
-	return apply_filters( 'cinq_theme_options_validate', $output, $input );
+	return $input;
 }

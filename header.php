@@ -18,7 +18,7 @@
 	 */
 	global $page, $paged;
 
-	wp_title( '|', true, 'right' );
+	wp_title( '&middot;', true, 'right' );
 
 	// Add the blog name.
 	bloginfo( 'name' );
@@ -26,11 +26,11 @@
 	// Add the blog description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
 	if ( $site_description && ( is_home() || is_front_page() ) )
-		echo " | $site_description";
+		echo " &middot; $site_description";
 
 	// Add a page number if necessary:
 	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( __( 'Page %s', 'cinq' ), max( $paged, $page ) );
+		echo ' &middot; ' . sprintf( __( 'Page %s', 'cinq' ), max( $paged, $page ) );
 
 	?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -42,21 +42,55 @@
 <?php wp_head(); ?>
 </head>
 
+<?php $theme_options = get_option("cinq_theme_options");?>
+
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
-	<?php do_action( 'before' ); ?>
-	<header id="masthead" class="site-header" role="banner">
-		<hgroup>
-			<h1 class="site-title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</hgroup>
+  <nav role="navigation" class="site-navigation main-navigation">
+    <div class="container">
+  		<h1 class="assistive-text"><?php _e( 'Menu', 'cinq' ); ?></h1>
+  		<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'cinq' ); ?>"><?php _e( 'Skip to content', 'cinq' ); ?></a></div>
 
-		<nav role="navigation" class="site-navigation main-navigation">
-			<h1 class="assistive-text"><?php _e( 'Menu', 'cinq' ); ?></h1>
-			<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'cinq' ); ?>"><?php _e( 'Skip to content', 'cinq' ); ?></a></div>
+  		<ul class="social-icons">
+    		<?php if($theme_options["show_rss"]): ?>
+          <li><a href="<?php bloginfo("rss2_url"); ?>" class="icon-feed" title="View RSS Feed"></a></li>
+        <?php endif; ?>
 
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav><!-- .site-navigation .main-navigation -->
-	</header><!-- #masthead .site-header -->
+        <?php if($theme_options["show_email"]): ?>
+          <li><a href="mailto:<?php echo bloginfo("admin_email"); ?>" class="icon-mail" title="Email me"></a></li>
+        <?php endif; ?>
 
-	<div id="main">
+        <?php if($theme_options["show_twitter"] && $theme_options["twitter_handle"]): ?>
+          <li><a href="http://twitter.com/<?php echo $theme_options["twitter_handle"]; ?>" class="icon-twitter" title="Follow me on Twitter"></a></li>
+        <?php endif; ?>
+
+        <?php if($theme_options["show_instagram"] && $theme_options["instagram_username"]): ?>
+          <li><a href="http://statigr.am/<?php echo $theme_options["instagram_username"]; ?>" class="icon-instagram" title="View my photos on Instagram"></a></li>
+        <?php endif; ?>
+      </ul>
+
+  		<?php 
+        wp_nav_menu(array(
+          'menu_container' => '',
+          'menu_class' => 'primary-menu',
+          'theme_location' => 'primary'
+        ));
+      ?>
+    </div>
+	</nav><!-- .site-navigation .main-navigation -->
+
+	<section class="container">
+    <section class="side">
+      <header>
+        <h1 class="site-title">
+          <a href="<?php echo home_url( '/' ); ?>" title="Go Home" rel="home">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/site-title.png" alt="<?php bloginfo( 'name' ); ?> &middot; <?php bloginfo("description"); ?>">
+          </a>
+        </h1>
+      </header>
+
+      <aside class="sidebar">
+        <?php get_sidebar(); ?>
+      </aside>
+    </section>
+  
+  	<section id="content" class="content">

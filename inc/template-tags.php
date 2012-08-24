@@ -67,36 +67,34 @@ function cinq_comment( $comment, $args, $depth ) {
 			break;
 		default :
 	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-		<article id="comment-<?php comment_ID(); ?>" class="comment">
-			<footer>
-				<div class="comment-author vcard">
-					<?php echo get_avatar( $comment, 40 ); ?>
-					<?php printf( __( '%s <span class="says">says:</span>', 'cinq' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-				</div><!-- .comment-author .vcard -->
-				<?php if ( $comment->comment_approved == '0' ) : ?>
-					<em><?php _e( 'Your comment is awaiting moderation.', 'cinq' ); ?></em>
-					<br />
-				<?php endif; ?>
+  <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+    <div id="comment-<?php comment_ID(); ?>">
+  		<h3>
+  		  <?php if(get_comment_author_url()) : ?>
+        <a href="<?php comment_author_url(); ?>">
+        <?php endif; ?>
+      		<?php echo get_avatar( $comment, 30, "retro" ); ?>
+      		<?php comment_author(); ?>
+    		<?php if(get_comment_author_url()) : ?>
+        </a>
+        <?php endif; ?>
+  		</h3>
+  
+  		<?php if ( $comment->comment_approved == '0' ) : ?>
+  			<em><?php _e( 'Your comment is awaiting moderation.', 'cinq' ); ?></em>
+  			<br />
+  		<?php endif; ?>
+  
+  		<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" class="date">
+  			<time pubdate datetime="<?php comment_time( 'c' ); ?>">
+    			<?php printf( __( '%1$s at %2$s', 'cinq' ), get_comment_date(), get_comment_time() ); ?>
+    		</time>
+      </a>
+  
+  		<div class="comment-content"><?php comment_text(); ?></div>
 
-				<div class="comment-meta commentmetadata">
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate datetime="<?php comment_time( 'c' ); ?>">
-					<?php
-						/* translators: 1: date, 2: time */
-						printf( __( '%1$s at %2$s', 'cinq' ), get_comment_date(), get_comment_time() ); ?>
-					</time></a>
-					<?php edit_comment_link( __( '(Edit)', 'cinq' ), ' ' );
-					?>
-				</div><!-- .comment-meta .commentmetadata -->
-			</footer>
-
-			<div class="comment-content"><?php comment_text(); ?></div>
-
-			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-			</div><!-- .reply -->
-		</article><!-- #comment-## -->
-
+  		<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+    </div>
 	<?php
 			break;
 	endswitch;
@@ -110,14 +108,46 @@ if ( ! function_exists( 'cinq_posted_on' ) ) :
  * @since Cinq 1.0
  */
 function cinq_posted_on() {
-	printf( __( 'Posted on <a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="byline"> by <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'cinq' ),
+  $byline = 'by <a href="%5$s" title="%6$s" rel="author">%7$s</a> on <a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a> ';
+	$tag_list = get_the_tag_list( '', ', ' );
+  if(!cinq_categorized_blog())
+	{
+		// This blog only has 1 category so we just need to worry about tags in the meta text
+		if($tag_list != '')
+		{
+  		// This post has tags
+			$meta_text = __($byline . 'and tagged %9$s', 'cinq');
+		}
+		else
+		{
+			$meta_text = __($byline, 'cinq');
+		}
+	}
+	else
+	{
+		// But this blog has loads of categories so we should probably display them here
+		if($tag_list != '')
+		{
+  		// This post has tags
+			$meta_text = __($byline . 'in %8$s and tagged %9$s', 'cinq');
+		}
+		else
+		{
+			$meta_text = __($byline . 'in %8$s', 'cinq');
+		}
+
+	}
+
+	printf( $meta_text,
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date() ),
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 		esc_attr( sprintf( __( 'View all posts by %s', 'cinq' ), get_the_author() ) ),
-		esc_html( get_the_author() )
+		esc_html( get_the_author() ),
+		get_the_category_list( __( ', ', 'cinq' ) ),
+		$tag_list
 	);
 }
 endif;

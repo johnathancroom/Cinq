@@ -8,12 +8,11 @@
 
 get_header(); ?>
 
-		<div id="primary" class="site-content">
-			<div id="content" role="main">
+		<div class="site-content">
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php cinq_content_nav( 'nav-above' ); ?>
+				<?php //cinq_content_nav( 'nav-above' ); ?>
 
 				<?php get_template_part( 'content', 'single' ); ?>
 
@@ -27,8 +26,7 @@ get_header(); ?>
 
 			<?php endwhile; // end of the loop. ?>
 
-			</div><!-- #content -->
-		</div><!-- #primary .site-content -->
+		</div><!-- .site-content -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

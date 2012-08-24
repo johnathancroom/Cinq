@@ -10,8 +10,7 @@
 
 get_header(); ?>
 
-		<section id="primary" class="site-content">
-			<div id="content" role="main">
+		<section class="site-content">
 
 			<?php if ( have_posts() ) : ?>
 
@@ -69,7 +68,7 @@ get_header(); ?>
 
 				<?php rewind_posts(); ?>
 
-				<?php cinq_content_nav( 'nav-above' ); ?>
+				<?php //cinq_content_nav( 'nav-above' ); ?>
 
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
@@ -92,8 +91,6 @@ get_header(); ?>
 
 			<?php endif; ?>
 
-			</div><!-- #content -->
-		</section><!-- #primary .site-content -->
+		</section><!-- .site-content -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
