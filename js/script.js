@@ -8,10 +8,7 @@ $(".social-icons [class^='icon-'], .social-icons [class*=' icon-']").qtip({
   position: {
 		my: 'top center',
 		at: 'bottom center',
-		viewport: $(window),
-		adjust: {
-  		y: -30
-		}
+		viewport: $(window)
   },
   style: {
 		classes: 'ui-tooltip-tipsy',
