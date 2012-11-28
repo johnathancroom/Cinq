@@ -64,11 +64,11 @@
         <?php endif; ?>
 
         <?php if($theme_options["show_instagram"] && $theme_options["instagram_username"]): ?>
-          <li><a href="http://statigr.am/<?php echo $theme_options["instagram_username"]; ?>" class="icon-instagram" title="View my photos on Instagram"></a></li>
+          <li><a href="http://instagram.com/<?php echo $theme_options["instagram_username"]; ?>" class="icon-instagram" title="View my photos on Instagram"></a></li>
         <?php endif; ?>
       </ul>
 
-  		<?php 
+  		<?php
         wp_nav_menu(array(
           'menu_container' => '',
           'menu_class' => 'primary-menu',
@@ -92,5 +92,5 @@
         <?php get_sidebar(); ?>
       </aside>
     </section>
-  
+
   	<section id="content" class="content">
