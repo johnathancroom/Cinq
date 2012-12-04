@@ -1,10 +1,10 @@
 @css {
 /*
 Theme Name: Cinq
-Theme URI: 
+Theme URI:
 Author: WebDesignerWeekend
 Author URI: http://webdesignerweekend.com
-Description: 
+Description:
 Version: 0.0-pre
 License: GNU General Public License
 License URI: license.txt
@@ -40,7 +40,7 @@ clearfix() {
   }
 }
 headerOutline() {
-  text-shadow: 
+  text-shadow:
     1px 1px 0px #FFF,
     1px -1px 0px #FFF,
     -1px 1px 0px #FFF,
@@ -74,63 +74,63 @@ box-sizing() {
 /*
   Typography
 */
-h1, h2, h3, h4, h5, h6 { 
-  color: #181818; 
-  font-weight: bold; 
-  line-height: 1.25 
+h1, h2, h3, h4, h5, h6 {
+  color: #181818;
+  font-weight: bold;
+  line-height: 1.25
 }
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { 
-  font-weight: inherit; 
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  font-weight: inherit;
 }
-h1 { 
+h1 {
   font-size: 20px;
   margin: 6px 0 12px 0;
 }
-h2 { 
+h2 {
   font-size: 18px;
-  margin: 4px 0 8px 0; 
+  margin: 4px 0 8px 0;
 }
-h3 { 
+h3 {
   font-size: 16px;
-  margin: 4px 0 8px 0; 
+  margin: 4px 0 8px 0;
 }
-h4 { 
+h4 {
   font-size: 14px;
   margin: 2px 0 4px;
 }
-h5 { 
+h5 {
   font-size: 14px;
   font-weight: normal;
   margin: 2px 0 4px;
 }
-h6 { 
+h6 {
   font-size: 12px;
-  font-weight: normal; 
+  font-weight: normal;
 }
 
-p, ul, ol { 
+p, ul, ol {
   font-size: 13px;
-  line-height: 1.8; 
+  line-height: 1.8;
   margin: 0 0 10px;
 }
-p img { 
+p img {
   margin: 0;
 }
 
-em, i { 
-  font-style: italic; 
+em, i {
+  font-style: italic;
   line-height: inherit;
 }
-strong, b { 
-  font-weight: bold; 
+strong, b {
+  font-weight: bold;
   line-height: inherit;
 }
-small { 
+small {
   font-size: 60%;
   line-height: inherit;
 }
 
-h1 small, h2 small, h3 small, h4 small, h5 small { 
+h1 small, h2 small, h3 small, h4 small, h5 small {
   color: #777;
 }
 
@@ -140,18 +140,18 @@ blockquote, blockquote p {
 }
 blockquote {
   border-left: 1px solid #ddd;
-  margin: 6px 0 12px 0; 
+  margin: 6px 0 12px 0;
   padding: 0px 20px 0 19px;
 }
-blockquote cite { 
+blockquote cite {
   color: #999;
-  display: block; 
+  display: block;
   font-size: 0.9em;
 }
-blockquote cite:before { 
-  content: "\2014 \0020"; 
+blockquote cite:before {
+  content: "\2014 \0020";
 }
-blockquote cite a, blockquote cite a:visited { 
+blockquote cite a, blockquote cite a:visited {
   color: #555;
 }
 
@@ -207,7 +207,7 @@ textarea {
   font-style: italic;
   padding: 4px 4px;
   width: 100%;
-  
+
   &:focus {
     border-color: #EEE;
     outline: none;
@@ -233,7 +233,7 @@ input[type=submit],
   color: $linkColor;
   padding: 4px 8px;
   text-transform: uppercase;
-  
+
   &:hover,
   &:focus {
     box-shadow: 0px 0px 3px 0px $mainColor;
@@ -369,7 +369,7 @@ embed {
     font-family: Bebas;
     font-size: 18px;
     margin: 4px 20px 5px 0;
-    
+
     &:hover,
     &:focus {
       color: #EEE;
@@ -447,10 +447,18 @@ embed {
   font-size: 12px;
   font-style: italic;
   line-height: 1.5;
-  
+
   a {
     font-style: normal;
     text-transform: uppercase;
+  }
+}
+.content .entry-content {
+  margin: 16px 0 30px;
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 15px;
   }
 }
 .content .biography {
@@ -459,7 +467,7 @@ embed {
   margin: 0 0 15px;
   min-height: 150px;
   padding: 24px 0;
-  
+
   img {
     left: 0;
     margin: 0;
@@ -494,7 +502,7 @@ footer .thumb-list h1 {
 footer .thumb-list ul li {
   border-bottom: 1px solid #E7E7E7;
   padding: 10px 0 10px 75px;
-  
+
   &:last-child {
     border: 0;
   }
@@ -507,7 +515,7 @@ footer .thumb-list ul li {
     font-family: Bebas;
     font-weight: normal;
     margin: 0;
-    
+
     a {
       color: #555;
     }
@@ -522,7 +530,7 @@ footer .thumb-list ul li {
       font-style: italic;
       font-family: $fontFamily;
       font-weight: normal;
-      
+
       /*a {
         color: $linkColor;
         font-style: normal;
@@ -592,9 +600,9 @@ footer .thumb-list ul li {
   max-width: 100%;
 }
 .comment-list {
-  
+
   .comment {
-    
+
     h3 {
       border-bottom: 1px solid #E7E7E7;
       color: #555;
@@ -605,7 +613,7 @@ footer .thumb-list ul li {
       margin-bottom: 0px;
       padding-bottom: 5px;
       vertical-align: bottom;
-      
+
       img {
         margin: 0 5px 0 0;
         top: 7px;
@@ -630,7 +638,7 @@ footer .thumb-list ul li {
       position: absolute;
       right: 5px;
       top: 14px;
-      
+
       &:hover,
       &:focus {
         color: #404040;

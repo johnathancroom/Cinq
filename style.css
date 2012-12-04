@@ -1,9 +1,9 @@
 /*
 Theme Name: Cinq
-Theme URI: 
+Theme URI:
 Author: WebDesignerWeekend
 Author URI: http://webdesignerweekend.com
-Description: 
+Description:
 Version: 0.0-pre
 License: GNU General Public License
 License URI: license.txt
@@ -204,6 +204,8 @@ img,object,embed{height:auto;max-width:100%}
 .content .entry-title a:hover,.content .entry-title a:focus{color:#2d98eb}
 .content .entry-meta{color:#999;font-size:12px;font-style:italic;line-height:1.5;}
 .content .entry-meta a{font-style:normal;text-transform:uppercase}
+.content .entry-content{margin:16px 0 30px;}
+.content .entry-content p{line-height:1.6;margin-bottom:15px}
 .content .biography{color:#333;margin:0 0 15px;min-height:150px;padding:24px 0;}
 .content .biography:before{background:#efefef;background:rgba(0,0,0,0.03);border:1px solid #e5e5e5;border-left:0;border-right:0;content:"";height:100%;left:-24px;position:absolute;top:0;width:200%}
 .content .biography img{left:0;margin:0;max-height:100px;max-width:100px;position:absolute}
