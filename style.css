@@ -242,7 +242,7 @@ img,object,embed{height:auto;max-width:100%}
 .comment-list .comment .date{color:#aaa}
 .comment-list .comment .comment-reply-link{color:#aaa;font-style:italic;font-size:12px;position:absolute;right:5px;top:14px;}
 .comment-list .comment .comment-reply-link:hover,.comment-list .comment .comment-reply-link:focus{color:#404040}
-.comment-list .comment .children{margin-left:50px}
+.comment-list .comment .children{margin-left:50px;list-style:none}
 #nav-below{background:url("images/stripe-horiz.png") repeat-x 0 top;margin:16px 0;padding-top:34px}
 #nav-below:after{visibility:hidden;display:block;content:"";clear:both;height:0}
 .single #nav-below{background:none;padding-top:0;margin:25px 0}
