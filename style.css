@@ -176,7 +176,7 @@ img,object,embed{height:auto;max-width:100%}
 .side .site-title{margin-top:20px}
 .sidebar{color:#666;}
 .sidebar .widget-title{color:#404040;font-family:Bebas;font-weight:normal;margin:0 0 5px}
-.sidebar ul,.sidebar ol{margin:0}
+.sidebar ul,.sidebar ol{list-style:none;margin:0}
 .sidebar .widget{background:url("images/stripe-horiz.png") repeat-x 0 bottom;margin-bottom:16px;padding-bottom:24px}
 .sidebar .widget:after{visibility:hidden;display:block;content:"";clear:both;height:0}
 .sidebar .widget_text{line-height:1.8}
@@ -234,6 +234,7 @@ img,object,embed{height:auto;max-width:100%}
 #respond textarea{float:right;min-height:110px;max-width:68%}
 #respond .form-submit{bottom:-40px;position:absolute;right:0}
 .logged-in #respond textarea{max-width:100%}
+.comment-list{list-style:none;}
 .comment-list .comment h3{border-bottom:1px solid #e7e7e7;color:#555;font-family:Bebas;font-size:16px;font-weight:normal;line-height:1.9;margin-bottom:0;padding-bottom:5px;vertical-align:bottom;}
 .comment-list .comment h3 img{margin:0 5px 0 0;top:7px}
 .comment-list .comment h3 a{color:inherit;vertical-align:inherit}
