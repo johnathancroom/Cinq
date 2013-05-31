@@ -10,6 +10,20 @@
 ?>
 
   	</section><!-- .content -->
+
+  	<section class="side">
+      <header>
+        <h1 class="site-title">
+          <a href="<?php echo home_url( '/' ); ?>" title="Go Home" rel="home">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/site-title.png" alt="<?php bloginfo( 'name' ); ?> &middot; <?php bloginfo("description"); ?>">
+          </a>
+        </h1>
+      </header>
+
+      <aside class="sidebar">
+        <?php get_sidebar(); ?>
+      </aside>
+    </section>
   </section><!-- .container -->
 
   <footer class="copyright">

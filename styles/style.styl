@@ -290,20 +290,23 @@ embed {
   margin-right: 20px;
 }
 .side {
-  float: left;
   margin-left: 25px;
+  position: absolute;
+  top: 0;
   width: $sidebarWidth;
 }
 .side .site-title {
   margin-top: 20px;
 }
+.site-title-wide {
+  display: none;
+  margin: 0 40px;
+}
 .sidebar {
   color: #666;
-  /*font-size: 12px;*/
 }
 .sidebar .widget-title {
   color: #404040;
-  /*font: 14px Bebas;*/
   font-family: Bebas;
   font-weight: normal;
   margin: 0 0 5px;
@@ -403,7 +406,7 @@ embed {
       height: 1000px;
       position: absolute;
       right:  0;
-      width: 1000px;
+      width: 1500px;
     }
     a {
       font-size: 20px;
@@ -751,10 +754,17 @@ footer .thumb-list ul li {
 }
 
 /* Media queries */
-@media (max-width: 896px) {
+@media (max-width: 768px) {
+  .site-title-wide {
+    display: block;
+  }
+  .site-title {
+    display: none;
+  }
+
   .main-navigation {
     .social-icons {
-      padding-left: 25px;
+      padding-left: 40px;
       position: static;
 
       &:before {
@@ -764,7 +774,16 @@ footer .thumb-list ul li {
     }
     .primary-menu {
       margin-left: 0;
-      padding-left: 25px;
+      padding-left: 40px;
     }
+  }
+
+  .side {
+    margin: 30px 40px 0;
+    position: static;
+    width: auto;
+  }
+  .content {
+    margin: 0 20px;
   }
 }

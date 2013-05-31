@@ -11,7 +11,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<!-- <meta name="viewport" content="width=device-width" /> -->
+<meta name="viewport" content="width=device-width" />
 <title><?php
 	/*
 	 * Print the <title> tag based on what is being viewed.
@@ -79,18 +79,11 @@
 	</nav><!-- .site-navigation .main-navigation -->
 
 	<section class="container">
-    <section class="side">
-      <header>
-        <h1 class="site-title">
-          <a href="<?php echo home_url( '/' ); ?>" title="Go Home" rel="home">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/site-title.png" alt="<?php bloginfo( 'name' ); ?> &middot; <?php bloginfo("description"); ?>">
-          </a>
-        </h1>
-      </header>
 
-      <aside class="sidebar">
-        <?php get_sidebar(); ?>
-      </aside>
-    </section>
+    <h1 class="site-title-wide">
+      <a href="<?php echo home_url( '/' ); ?>" title="Go Home" rel="home">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/site-title-wide.png" alt="<?php bloginfo( 'name' ); ?> &middot; <?php bloginfo("description"); ?>">
+      </a>
+    </h1>
 
   	<section id="content" class="content">
