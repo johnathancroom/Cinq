@@ -233,8 +233,9 @@ img,object,embed{height:auto;max-width:100%}
 #respond #reply-title small{position:absolute;right:0;top:10px}
 #respond .left{position:absolute;width:30%;}
 #respond .left input{display:block;margin-bottom:10px}
-#respond textarea{float:right;min-height:110px;max-width:68%}
+#respond textarea{float:right;min-height:110px;margin-bottom:10px;max-width:68%}
 #respond .form-submit{bottom:-40px;position:absolute;right:0}
+.comment-subscription-form{float:left;margin:0;width:100%}
 .logged-in #respond textarea{max-width:100%}
 .comment-list{list-style:none;}
 .comment-list .comment h3{border-bottom:1px solid #e7e7e7;color:#555;font-family:Bebas;font-size:16px;font-weight:normal;line-height:1.9;margin-bottom:0;padding-bottom:5px;vertical-align:bottom;}
