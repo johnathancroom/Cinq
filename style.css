@@ -265,6 +265,7 @@ img,object,embed{height:auto;max-width:100%}
 .main-navigation .social-icons{padding-left:40px;position:static;}
 .main-navigation .social-icons:before{height:41px;-webkit-box-shadow:inset 0 -10px 5px -10px;box-shadow:inset 0 -10px 5px -10px}
 .main-navigation .primary-menu{margin-left:0;padding-left:40px}
+.site-content{padding:0 10px}
 .side{margin:30px 40px 0;position:static;width:auto}
-.content{margin:0 20px}
+.content{margin:0 10px}
 }
